@@ -253,13 +253,13 @@ const decryptAudio = async (encryptedUrl) => {
 ## 🚀 使用说明
 
 ### 首次访问
-1. 打开 `https://moyermusic.cn`
-2. 输入站点访问密码
+1. 打开 `https://moyer-music.vercel.app/`
+2. 输入站点访问密码123456
 3. 浏览公开音乐库
 
 ### 私人空间
 1. 点击侧边栏"私人珍藏"
-2. 输入私人空间密码
+2. 输入私人空间密码000000
 3. 访问加密音乐内容
 
 ### PWA安装
