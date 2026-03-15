@@ -5,6 +5,7 @@
 ![PWA](https://img.shields.io/badge/PWA-✓-5A0FC8?logo=pwa)
 ![Service Worker](https://img.shields.io/badge/Service_Worker-✓-FF6F00?logo=javascript)
 ![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?logo=vercel)
+![Android](https://img.shields.io/badge/Android_App-✓-3DDC84?logo=android)
 
 **一个功能完整、性能卓越的现代音乐流媒体应用**，支持PWA安装、离线播放、动态歌词、深色模式、私人加密空间，并已封装为Android应用。
 
@@ -17,6 +18,7 @@
 🤖 **Android版**: 已通过Android Studio封装为独立应用
 
 > 💡 **项目说明**: 本项目是在AI辅助下完成的完整Web应用开发实践。作为一个非计算机专业的学生，通过AI工具辅助，我独立完成了从产品设计、技术选型、代码实现到部署运维的全流程，证明了AI时代下快速学习和解决问题的能力。
+
 ---
 
 ## ✨ 核心特性
@@ -60,6 +62,7 @@
 | :---: | :---: |
 | ![密码库](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/se.png) | ![工具](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/FM.jpg) |
 
+---
 
 ## 🏗️ 技术架构
 
@@ -109,7 +112,8 @@ moyer-music/
 ├── icon-192.png         # PWA图标(192x192)
 ├── icon-512.png         # PWA图标(512x512)
 ├── README.md            # 项目说明文档
-└── LICENSE              # 许可证
+├── LICENSE              # 许可证
+└── admin.html           # 管理后台(文件上传与加密)
 ```
 
 ### 核心文件说明
@@ -134,6 +138,31 @@ const mediaStrategy = new workbox.strategies.CacheFirst({
     })
   ]
 });
+```
+
+#### `admin.html` - 管理后台
+- 七牛云文件上传界面
+- 本地文件加密处理
+- 自动生成songs.json
+- 批量管理音乐库
+
+#### `MainActivity.java` - Android应用主活动
+```java
+// 关键功能：
+// 1. 获取并激活局部唤醒锁，防止后台切歌时CPU休眠
+// 2. 解除WebView媒体播放必须有用户交互的限制
+// 3. 隐藏系统UI，实现全屏沉浸式体验
+// 4. 强制恢复WebView定时器和渲染引擎，确保后台JS继续运行
+```
+
+#### `AndroidManifest.xml` - Android应用配置
+```xml
+<!-- 关键权限与配置 -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 ```
 
 #### `songs.json` - 音乐数据库格式
@@ -188,15 +217,17 @@ const mediaStrategy = new workbox.strategies.CacheFirst({
 4. 自动部署完成
 
 ### 4. 音乐文件管理
-1. 将音乐文件上传到七牛云存储空间
-2. 更新 `songs.json` 中的文件URL
-3. 私人音乐使用加密工具处理后上传(.enc格式)
+1. 访问 `https://moyermusic.cn/admin.html` 打开管理后台
+2. 配置七牛云AK/SK和存储空间信息
+3. 上传音乐文件（支持自动加密）
+4. 下载生成的songs.json文件并替换到项目中
 
 ### 5. Android应用封装
-1. 使用Android Studio创建WebView项目
-2. 加载 `https://moyermusic.cn`
-3. 配置WebView设置支持PWA
-4. 生成签名APK发布
+1. 使用Android Studio创建Capacitor项目
+2. 将MainActivity.java和AndroidManifest.xml配置到项目中
+3. 加载 `https://moyermusic.cn`
+4. 配置WebView设置支持PWA
+5. 生成签名APK发布
 
 ---
 
@@ -236,6 +267,19 @@ const decryptAudio = async (encryptedUrl) => {
 };
 ```
 
+### Android后台播放优化
+```java
+// MainActivity.java中的关键代码
+PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+if (powerManager != null) {
+    wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MoyerMusic::BackgroundPlay");
+    wakeLock.acquire(); // 防止后台切歌时CPU休眠
+}
+
+WebSettings settings = webView.getSettings();
+settings.setMediaPlaybackRequiresUserGesture(false); // 解除用户交互限制
+```
+
 ---
 
 ## 📊 性能指标
@@ -248,6 +292,7 @@ const decryptAudio = async (encryptedUrl) => {
 | **离线支持** | ✅ | 完整PWA离线功能 |
 | **缓存命中率** | > 90% | 智能缓存策略 |
 | **包体积** | ~200KB | 无构建步骤，CDN加载 |
+| **Android后台播放** | ✅ | 唤醒锁+WebView优化 |
 
 ---
 
@@ -273,6 +318,12 @@ const decryptAudio = async (encryptedUrl) => {
 - **点击底部播放条**: 进入全屏模式
 - **全屏模式**: 点击屏幕显示/隐藏控制栏
 - **锁屏控制**: 支持系统媒体控制
+
+### 管理后台
+1. 访问 `https://moyermusic.cn/admin.html`
+2. 配置七牛云信息
+3. 上传音乐文件（支持批量）
+4. 下载生成的songs.json
 
 ---
 
@@ -313,6 +364,10 @@ const decryptAudio = async (encryptedUrl) => {
 **问题**: 锁屏控制与页面状态不同步  
 **解决方案**: Media Session API + Capacitor插件集成
 
+#### 5. Android后台播放
+**问题**: 后台切换歌曲时CPU休眠导致播放中断  
+**解决方案**: 使用PARTIAL_WAKE_LOCK唤醒锁 + WebView优化
+
 ---
 
 ## 🤝 贡献指南
@@ -340,6 +395,7 @@ const decryptAudio = async (encryptedUrl) => {
 - [Workbox](https://developers.google.com/web/tools/workbox) - Google的PWA工具库
 - [Vercel](https://vercel.com/) - 优秀的静态站点部署平台
 - [七牛云](https://www.qiniu.com/) - 可靠的云存储服务
+- [Capacitor](https://capacitorjs.com/) - 跨平台原生应用运行时
 
 ---
 
