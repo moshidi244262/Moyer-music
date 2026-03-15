@@ -53,11 +53,11 @@
 
 | 登录界面 | 主仪表盘 |
 | :---: | :---: |
-| ![登录界面](https://moyermusic.cn/moyer-space-cover/dljm.jpg) | ![主界面](https://moyermusic.cn/moyer-space-cover/zybp.jpg) |
+| ![登录界面](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/dl.png) | ![主界面](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/zjm.png) |
 
-| 密码库 (已锁定) | 工具模块 |
+| 私人音乐（已锁定）| 播放界面 |
 | :---: | :---: |
-| ![密码库](https://moyermusic.cn/moyer-space-cover/mmk.jpg) | ![工具](https://moyermusic.cn/moyer-space-cover/gjmk.jpg) |
+| ![密码库](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/se.png) | ![工具](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/FM.jpg) |
 
 
 ## 🏗️ 技术架构
