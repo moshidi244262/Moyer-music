@@ -10,6 +10,7 @@
 
 🌐 **在线体验**: [https://moyer-music.vercel.app/](https://moyer-music.vercel.app/)  
 🔐 **测试密码**: 默认登录密码：123456；私人区域密码：000000（温馨提示，公开项目仅为第一首歌能播放）
+
 📱 **PWA应用**: 支持添加到主屏幕，获得原生应用体验  
 🤖 **Android版**: 已通过Android Studio封装为独立应用
 
