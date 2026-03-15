@@ -259,7 +259,7 @@
 
             const categories = useMemo(() => {
                 if (currentTab === 'private') {
-                    return ["全部", "子非鱼", "陈璐", "南征","竹曦","小爽","岁岁","ASMR", "其他"];
+                    return ["全部", "乔乔超温柔", "ASMR", "其他"];
                 } else {
                     const baseList = songsDB.filter(s => !s.isPrivate);
                     return ["全部", ...Array.from(new Set(baseList.map(s => s.category || "其他")))];
