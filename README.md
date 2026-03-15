@@ -100,10 +100,10 @@
 
 ```
 moyer-music/
-├── index.html              # 主入口文件(SPA单页应用)
-├── manifest.json          # PWA配置文件
-├── sw.js                 # Service Worker核心逻辑
-├── vercel.json           # Vercel部署配置
+├── index.html           # 主入口文件(SPA单页应用)
+├── manifest.json        # PWA配置文件
+├── sw.js                # Service Worker核心逻辑
+├── vercel.json          # Vercel部署配置
 ├── songs.json           # 音乐数据库(示例)
 ├── icon-192.png         # PWA图标(192x192)
 ├── icon-512.png         # PWA图标(512x512)
