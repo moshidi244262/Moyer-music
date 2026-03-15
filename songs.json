@@ -1,0 +1,1382 @@
+[
+  {
+    "id": 1,
+    "title": "兰亭序",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/music-cover/zjl-ltx.mp4",
+    "url": "https://moyermusic.cn/music/zjl-ltx.mp3",
+    "lrc": "https://moyermusic.cn/music-lrc/zjl-ltx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 2,
+    "title": "稻香",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-dx.jpg",
+    "url": "https://moyermusic.cn/music/zjl-dx.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-dx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 3,
+    "title": "花海",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-hh.jpg",
+    "url": "https://moyermusic.cn/music/zjl-hh.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-hh.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 4,
+    "title": "青花瓷",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-qhc.jpg",
+    "url": "https://moyermusic.cn/music/zjl-qhc.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-qhc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 5,
+    "title": "晴天",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-qt.jpg",
+    "url": "https://moyermusic.cn/music/zjl-qt.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-qt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 6,
+    "title": "说好的幸福呢",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-shdxfn.jpg",
+    "url": "https://moyermusic.cn/music/zjl-shdxfn.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-shdxfn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 7,
+    "title": "听妈妈的话",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-tmmdh.jpg",
+    "url": "https://moyermusic.cn/music/zjl-tmmdh.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-tmmdh.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 8,
+    "title": "发如雪",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-frx.jpg",
+    "url": "https://moyermusic.cn/music/zjl-frx.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-frx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 9,
+    "title": "红尘客栈",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-hckz.png",
+    "url": "https://moyermusic.cn/music/zjl-hckz.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-hckz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 10,
+    "title": "夜曲",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-yq.jpg",
+    "url": "https://moyermusic.cn/music/zjl-yq.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-yq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 11,
+    "title": "反方向的钟",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-ffxdz.jpg",
+    "url": "https://moyermusic.cn/music/zjl-ffxdz.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-ffxdz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 12,
+    "title": "青衣DJ",
+    "artist": "DJ阿泽",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJaz-qy.jpg",
+    "url": "https://moyermusic.cn/music/DJaz-qy.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJaz-qy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 13,
+    "title": "牵丝戏DJ",
+    "artist": "不只中二",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/bzzr-qsx.jpg",
+    "url": "https://moyermusic.cn/music/bzzr-qsx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/bzzr-qsx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 14,
+    "title": "辞九门回忆DJ",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-cjmhy.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-cjmhy.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-cjmhy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 15,
+    "title": "乱世书×0.87降调版",
+    "artist": "风华音纪",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/fhyj-lssjdb.mp4",
+    "url": "https://moyermusic.cn/music/fhyj-lssjdb.flac",
+    "lrc": "https://moyermusic.cn/lrc/fhyj-lssjdb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 16,
+    "title": "乱世书×0.87Wave降调版",
+    "artist": "风华音纪",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/fhyj-lsswb.mp4",
+    "url": "https://moyermusic.cn/music/fhyj-lsswb.flac",
+    "lrc": "https://moyermusic.cn/lrc/fhyj-lsswb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 17,
+    "title": "游京(妮蔻进行曲)",
+    "artist": "唐伯虎",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/tbh-yj.jpg",
+    "url": "https://moyermusic.cn/music/tbh-yj.flac",
+    "lrc": "https://moyermusic.cn/lrc/tbh-yj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 18,
+    "title": "游京",
+    "artist": "阿农",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/an-yj.jpg",
+    "url": "https://moyermusic.cn/music/an-yj.flac",
+    "lrc": "https://moyermusic.cn/lrc/an-yj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 19,
+    "title": "虞兮叹DJ",
+    "artist": "闻人听书",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/wrts-yxtDJ.jpg",
+    "url": "https://moyermusic.cn/music/wrts-yxtDJ.mp3",
+    "lrc": "https://moyermusic.cn/lrc/wrts-yxtDJ.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 20,
+    "title": "折风渡夜",
+    "artist": "泽国同学",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zgtx-zfdy.jpg",
+    "url": "https://moyermusic.cn/music/zgtx-zfdy.wav",
+    "lrc": "https://moyermusic.cn/lrc/zgtx-zfdy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 21,
+    "title": "探故知超梦幻版",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/qya-tgzcmhb.mp4",
+    "url": "https://moyermusic.cn/music/qya-tgzcmhb.flac",
+    "lrc": "https://moyermusic.cn/lrc/qya-tgzcmhb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 22,
+    "title": "探故知超阿智版",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/qya-tgzazb.jpg",
+    "url": "https://moyermusic.cn/music/qya-tgzazb.flac",
+    "lrc": "https://moyermusic.cn/lrc/qya-tgzazb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 23,
+    "title": "难却0.85x",
+    "artist": "平生不晚",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/psbw-nq0.85x.jpg",
+    "url": "https://moyermusic.cn/music/psbw-nq0.85x.mp3",
+    "lrc": "https://moyermusic.cn/lrc/psbw-nq0.85x.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 24,
+    "title": "难却",
+    "artist": "平生不晚",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/psbw-nq.jpg",
+    "url": "https://moyermusic.cn/music/psbw-nq.wav",
+    "lrc": "https://moyermusic.cn/lrc/psbw-nq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 25,
+    "title": "本草纲目",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-bcgm.jpg",
+    "url": "https://moyermusic.cn/music/zjl-bcgm.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-bcgm.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 26,
+    "title": "烟花易冷",
+    "artist": "周杰伦",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/zjl-yhyl.jpg",
+    "url": "https://moyermusic.cn/music/zjl-yhyl.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjl-yhyl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 27,
+    "title": "青衣氛围感",
+    "artist": "尘ah",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/cah-qyfwg.jpg",
+    "url": "https://moyermusic.cn/music/cah-qyfwg.mp3",
+    "lrc": "https://moyermusic.cn/lrc/cah-qyfwg.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 28,
+    "title": "青衣",
+    "artist": "草帽酱",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/cmj-qy.jpg",
+    "url": "https://moyermusic.cn/music/cmj-qy.wav",
+    "lrc": "https://moyermusic.cn/lrc/cmj-qy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 29,
+    "title": "牵丝戏",
+    "artist": "银临、阿杰",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/yl-qsx.jpg",
+    "url": "https://moyermusic.cn/music/yl-qsx.flac",
+    "lrc": "https://moyermusic.cn/lrc/yl-qsx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 30,
+    "title": "牵丝戏",
+    "artist": "排骨教主",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/pgjz-qsx.jpg",
+    "url": "https://moyermusic.cn/music/pgjz-qsx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/pgjz-qsx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 31,
+    "title": "辞九门回忆",
+    "artist": "解忧草、冰幽",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/jyc-cjmhy.jpg",
+    "url": "https://moyermusic.cn/music/jyc-cjmhy.mp3",
+    "lrc": "https://moyermusic.cn/lrc/jyc-cjmhy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 32,
+    "title": "辞九门回忆",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-cjmhy.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-cjmhy.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-cjmhy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 33,
+    "title": "莫问归期+辞九门回忆",
+    "artist": "莫问归期",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/mwgq-cjmhy.jpg",
+    "url": "https://moyermusic.cn/music/mwgq-cjmhy.mp3",
+    "lrc": "https://moyermusic.cn/lrc/mwgq-cjmhy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 34,
+    "title": "乱世书",
+    "artist": "风华音纪",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/fhyj-lss.mp4",
+    "url": "https://moyermusic.cn/music/fhyj-lss.flac",
+    "lrc": "https://moyermusic.cn/lrc/fhyj-lss.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 35,
+    "title": "游京",
+    "artist": "海伦",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/hl-yj.jpg",
+    "url": "https://moyermusic.cn/music/hl-yj.flac",
+    "lrc": "https://moyermusic.cn/lrc/hl-yj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 36,
+    "title": "虞兮叹",
+    "artist": "闻人听书",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/wrts-yxt.jpg",
+    "url": "https://moyermusic.cn/music/wrts-yxt.wav",
+    "lrc": "https://moyermusic.cn/lrc/wrts-yxt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 37,
+    "title": "虞兮叹降调版",
+    "artist": "闻人听书",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/wrts-yxtjdb.mp4",
+    "url": "https://moyermusic.cn/music/wrts-yxtjdb.flac",
+    "lrc": "https://moyermusic.cn/lrc/wrts-yxtjdb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 38,
+    "title": "探故知",
+    "artist": "浅阿影-汐音社",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/xys-tgz.png",
+    "url": "https://moyermusic.cn/music/xys-tgz.flac",
+    "lrc": "https://moyermusic.cn/lrc/xys-tgz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 39,
+    "title": "探故知 (DJR7版)",
+    "artist": "kuwo",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/kuwo-tgz.jpg",
+    "url": "https://moyermusic.cn/music/kuwo-tgz.flac",
+    "lrc": "https://moyermusic.cn/lrc/kuwo-tgz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 40,
+    "title": "难却(DJ细霖版)",
+    "artist": "平生不晚",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/psbw-nqxlb.jpg",
+    "url": "https://moyermusic.cn/music/psbw-nqxlb.flac",
+    "lrc": "https://moyermusic.cn/lrc/psbw-nqxlb.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 41,
+    "title": "叹郁孤",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-tyg.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-tyg.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-tyg.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 42,
+    "title": "叹郁孤",
+    "artist": "霄磊",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/xl-tyg.jpg",
+    "url": "https://moyermusic.cn/music/xl-tyg.flac",
+    "lrc": "https://moyermusic.cn/lrc/xl-tyg.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 43,
+    "title": "春涧",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/qya-cj.jpg",
+    "url": "https://moyermusic.cn/music/qya-cj.wav",
+    "lrc": "https://moyermusic.cn/lrc/qya-cj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 44,
+    "title": "春涧",
+    "artist": "大头针爆燃版",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dtzbrb-cj.jpg",
+    "url": "https://moyermusic.cn/music/dtzbrb-cj.flac",
+    "lrc": "https://moyermusic.cn/lrc/dtzbrb-cj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 45,
+    "title": "春涧",
+    "artist": "泽国同学",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zgtx-cj.jpg",
+    "url": "https://moyermusic.cn/music/zgtx-cj.flac",
+    "lrc": "https://moyermusic.cn/lrc/zgtx-cj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 46,
+    "title": "关山酒",
+    "artist": "Bao小易",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/baoxy-gsj.mp4",
+    "url": "https://moyermusic.cn/music/baoxy-gsj.flac",
+    "lrc": "https://moyermusic.cn/lrc/baoxy-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 47,
+    "title": "关山酒DJ",
+    "artist": "DJ名龙",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJml-gsj.mp4",
+    "url": "https://moyermusic.cn/music/DJml-gsj.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJml-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 48,
+    "title": "关山酒",
+    "artist": "泽国同学",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zgtx-gsj.jpg",
+    "url": "https://moyermusic.cn/music/zgtx-gsj.flac",
+    "lrc": "https://moyermusic.cn/lrc/zgtx-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 49,
+    "title": "关山酒×0.7",
+    "artist": "DJ名龙",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJml07-gsj.mp4",
+    "url": "https://moyermusic.cn/music/DJml07-gsj.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJml07-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 50,
+    "title": "关山酒",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-gsj.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-gsj.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 51,
+    "title": "关山酒0.9DJwave",
+    "artist": "CR3",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/CR-gsj.jpg",
+    "url": "https://moyermusic.cn/music/CR-gsj.mp3",
+    "lrc": "https://moyermusic.cn/lrc/CR-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 52,
+    "title": "关山酒梦泪进行曲",
+    "artist": "DJ小楷",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/ml-gsj.jpg",
+    "url": "https://moyermusic.cn/music/ml-gsj.flac",
+    "lrc": "https://moyermusic.cn/lrc/ml-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 53,
+    "title": "关山酒DJ梦泪",
+    "artist": "DJ小楷",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJml-gsj.mp4",
+    "url": "https://moyermusic.cn/music/DJml-gsj.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJml-gsj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 54,
+    "title": "戏文说DJ",
+    "artist": "叫宝宝/祥嘞嘞",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjbb-xws.jpg",
+    "url": "https://moyermusic.cn/music/DJjbb-xws.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjbb-xws.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 55,
+    "title": "戏文说",
+    "artist": "叫宝宝/祥嘞嘞",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/jbb-xws.jpg",
+    "url": "https://moyermusic.cn/music/jbb-xws.flac",
+    "lrc": "https://moyermusic.cn/lrc/jbb-xws.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 56,
+    "title": "戏文说DJ慢摇版",
+    "artist": "叫宝宝/祥嘞嘞",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJmy-xws.jpg",
+    "url": "https://moyermusic.cn/music/DJmy-xws.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJmy-xws.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 57,
+    "title": "桃花诺",
+    "artist": "G.E.M邓紫棋",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dzq-thn.png",
+    "url": "https://moyermusic.cn/music/dzq-thn.flac",
+    "lrc": "https://moyermusic.cn/lrc/dzq-thn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 58,
+    "title": "桃花诺",
+    "artist": "于春洋",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/ycy-thn.jpg",
+    "url": "https://moyermusic.cn/music/ycy-thn.flac",
+    "lrc": "https://moyermusic.cn/lrc/ycy-thn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 59,
+    "title": "春不晚",
+    "artist": "郑浩",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zh-cbw.jpg",
+    "url": "https://moyermusic.cn/music/zh-cbw.flac",
+    "lrc": "https://moyermusic.cn/lrc/zh-cbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 60,
+    "title": "春不晚",
+    "artist": "冰洁",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/bj-cbw.jpg",
+    "url": "https://moyermusic.cn/music/bj-cbw.flac",
+    "lrc": "https://moyermusic.cn/lrc/bj-cbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 61,
+    "title": "春不晚",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-cbw.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-cbw.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-cbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 62,
+    "title": "春不晚DJ",
+    "artist": "DJ阿卓",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/azb-cbw.jpg",
+    "url": "https://moyermusic.cn/music/azb-cbw.flac",
+    "lrc": "https://moyermusic.cn/lrc/azb-cbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 63,
+    "title": "春不晚（少年版）",
+    "artist": "木木三",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/mms-cbw.jpg",
+    "url": "https://moyermusic.cn/music/mms-cbw.flac",
+    "lrc": "https://moyermusic.cn/lrc/mms-cbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 64,
+    "title": "春庭雪",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-ctx.png",
+    "url": "https://moyermusic.cn/music/dsmj-ctx.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-ctx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 65,
+    "title": "春庭雪DJ",
+    "artist": "DJ名龙",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJml-ctx.jpg",
+    "url": "https://moyermusic.cn/music/DJml-ctx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJml-ctx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 66,
+    "title": "春庭雪0.8",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj08-ctx.jpg",
+    "url": "https://moyermusic.cn/music/dsmj08-ctx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/dsmj08-ctx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 67,
+    "title": "春庭雪0.9",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj09-ctx.mp4",
+    "url": "https://moyermusic.cn/music/dsmj09-ctx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/dsmj09-ctx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 68,
+    "title": "红昭愿",
+    "artist": "音阙诗听",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/yqst-hzy.jpg",
+    "url": "https://moyermusic.cn/music/yqst-hzy.flac",
+    "lrc": "https://moyermusic.cn/lrc/yqst-hzy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 69,
+    "title": "红昭愿DJ",
+    "artist": "DJ半夏",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJbx-hzy.jpg",
+    "url": "https://moyermusic.cn/music/DJbx-hzy.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJbx-hzy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 70,
+    "title": "红昭愿0.8",
+    "artist": "赵允哲",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zyz-hzy.jpg",
+    "url": "https://moyermusic.cn/music/zyz-hzy.mp3",
+    "lrc": "https://moyermusic.cn/lrc/zyz-hzy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 71,
+    "title": "十年人间",
+    "artist": "李常超（Lao乾妈）",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/lcc-snrj.jpg",
+    "url": "https://moyermusic.cn/music/lcc-snrj.flac",
+    "lrc": "https://moyermusic.cn/lrc/lcc-snrj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 72,
+    "title": "十年人间DJ",
+    "artist": "DJ阿柴",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJ-snrj.jpg",
+    "url": "https://moyermusic.cn/music/DJ-snrj.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJ-snrj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 73,
+    "title": "十年人间抖音版",
+    "artist": "M6、虞姬、圈妹",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dy-snrj.mp4",
+    "url": "https://moyermusic.cn/music/dy-snrj.flac",
+    "lrc": "https://moyermusic.cn/lrc/dy-snrj.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 74,
+    "title": "落DJ",
+    "artist": "唐伯虎Annie",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/tbh-l.jpg",
+    "url": "https://moyermusic.cn/music/tbh-l.flac",
+    "lrc": "https://moyermusic.cn/lrc/tbh-l.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 75,
+    "title": "燕无歇",
+    "artist": "七叔（叶泽浩）",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/qs-ywx.jpg",
+    "url": "https://moyermusic.cn/music/qs-ywx.flac",
+    "lrc": "https://moyermusic.cn/lrc/qs-ywx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 76,
+    "title": "燕无歇DJ",
+    "artist": "蒋雪儿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjxe-ywx.jpg",
+    "url": "https://moyermusic.cn/music/DJjxe-ywx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjxe-ywx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 77,
+    "title": "燕无歇DJ",
+    "artist": "七叔（叶泽浩）",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJqs-ywx.jpg",
+    "url": "https://moyermusic.cn/music/DJqs-ywx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJqs-ywx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 78,
+    "title": "燕无歇",
+    "artist": "蒋雪儿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/jxe-ywx.jpg",
+    "url": "https://moyermusic.cn/music/jxe-ywx.wav",
+    "lrc": "https://moyermusic.cn/lrc/jxe-ywx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 79,
+    "title": "谪仙",
+    "artist": "伊格赛听、叶里",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/ygst-zx.jpg",
+    "url": "https://moyermusic.cn/music/ygst-zx.flac",
+    "lrc": "https://moyermusic.cn/lrc/ygst-zx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 80,
+    "title": "谪仙DJ",
+    "artist": "伊格赛听、叶里",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJygst-zx.jpg",
+    "url": "https://moyermusic.cn/music/DJygst-zx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJygst-zx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 81,
+    "title": "谪仙×0.9",
+    "artist": "伊格赛听、叶里",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/ygst09-zx.jpg",
+    "url": "https://moyermusic.cn/music/ygst09-zx.flac",
+    "lrc": "https://moyermusic.cn/lrc/ygst09-zx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 82,
+    "title": "赤伶",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-cl.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-cl.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-cl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 83,
+    "title": "赤伶DJ",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJdsmj-cl.jpg",
+    "url": "https://moyermusic.cn/music/DJdsmj-cl.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJdsmj-cl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 84,
+    "title": "赤伶",
+    "artist": "HITA",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/HITA-cl.jpg",
+    "url": "https://moyermusic.cn/music/HITA-cl.mp3",
+    "lrc": "https://moyermusic.cn/lrc/HITA-cl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 85,
+    "title": "唐人恋曲DJ",
+    "artist": "DJ大圣",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJds-trlq.jpg",
+    "url": "https://moyermusic.cn/music/DJds-trlq.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJds-trlq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 86,
+    "title": "唐人恋曲DJ降调版",
+    "artist": "彩虹",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjdb-trlq.jpg",
+    "url": "https://moyermusic.cn/music/DJjdb-trlq.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJjdb-trlq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 87,
+    "title": "风催雨DJ",
+    "artist": "费戚戚",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJfqq-fcy.mp4",
+    "url": "https://moyermusic.cn/music/DJfqq-fcy.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJfqq-fcy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 88,
+    "title": "风催雨DJ",
+    "artist": "姜姜",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjj-fcy.mp4",
+    "url": "https://moyermusic.cn/music/DJjj-fcy.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjj-fcy.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 89,
+    "title": "弱水三千DJ",
+    "artist": "苏熠鸣",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/sym-rssq.jpg",
+    "url": "https://moyermusic.cn/music/sym-rssq.flac",
+    "lrc": "https://moyermusic.cn/lrc/sym-rssq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 90,
+    "title": "弱水三千DJ",
+    "artist": "石头、张晓棠",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/st-rssq.jpg",
+    "url": "https://moyermusic.cn/music/st-rssq.flac",
+    "lrc": "https://moyermusic.cn/lrc/st-rssq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 91,
+    "title": "半壶纱DJ",
+    "artist": "Dr.Phonk",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJ-bhs.mp4",
+    "url": "https://moyermusic.cn/music/DJ-bhs.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJ-bhs.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 92,
+    "title": "半壶纱DJ",
+    "artist": "刘珂矣",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJlky-bhs.jpg",
+    "url": "https://moyermusic.cn/music/DJlky-bhs.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJlky-bhs.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 93,
+    "title": "清明上河图DJ",
+    "artist": "DJ细霖",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJxl-qmsht.mp4",
+    "url": "https://moyermusic.cn/music/DJxl-qmsht.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJxl-qmsht.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 94,
+    "title": "清明上河图DJ",
+    "artist": "李玉刚、赵允哲、DJ Wave",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/lyg-qmsht.jpg",
+    "url": "https://moyermusic.cn/music/lyg-qmsht.flac",
+    "lrc": "https://moyermusic.cn/lrc/lyg-qmsht.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 95,
+    "title": "莫问归期DJ",
+    "artist": "DJ浪帝版",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjxe-mwgq.mp4",
+    "url": "https://moyermusic.cn/music/DJjxe-mwgq.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjxe-mwgq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 96,
+    "title": "莫问归期",
+    "artist": "蒋雪儿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/jxe-mwgq.jpg",
+    "url": "https://moyermusic.cn/music/jxe-mwgq.wav",
+    "lrc": "https://moyermusic.cn/lrc/jxe-mwgq.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 97,
+    "title": "不问别离DJ",
+    "artist": "指尖笑",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJzjx-bwbl.jpg",
+    "url": "https://moyermusic.cn/music/DJzjx-bwbl.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJzjx-bwbl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 98,
+    "title": "不问别离DJ",
+    "artist": "指尖笑",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zjx-bwbl.jpg",
+    "url": "https://moyermusic.cn/music/zjx-bwbl.flac",
+    "lrc": "https://moyermusic.cn/lrc/zjx-bwbl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 99,
+    "title": "鸳鸯戏",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-yyx.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-yyx.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-yyx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 100,
+    "title": "鸳鸯戏DJ",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJdsmj-yyx.jpg",
+    "url": "https://moyermusic.cn/music/DJdsmj-yyx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJdsmj-yyx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 101,
+    "title": "鸳鸯戏吉他版",
+    "artist": "略略略",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/lll-yyx.jpg",
+    "url": "https://moyermusic.cn/music/lll-yyx.flac",
+    "lrc": "https://moyermusic.cn/lrc/lll-yyx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 102,
+    "title": "鸳鸯戏 (DJ阿鑫版)",
+    "artist": "邓寓君(等什么君)",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJdsmj-yyx.mp4",
+    "url": "https://moyermusic.cn/music/DJdsmj-yyx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJdsmj-yyx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 103,
+    "title": "一笑江湖变速版",
+    "artist": "姜姜",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjjbsb-yxjh.jpg",
+    "url": "https://moyermusic.cn/music/DJjjbsb-yxjh.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjjbsb-yxjh.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 104,
+    "title": "一笑江湖 (DJ小瑞版)",
+    "artist": "闻人听書",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJwrtsxrb-yxjh.jpg",
+    "url": "https://moyermusic.cn/music/DJwrtsxrb-yxjh.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJwrtsxrb-yxjh.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 105,
+    "title": "一笑江湖变调版",
+    "artist": "姜姜",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjjbdb-yxjh.jpg",
+    "url": "https://moyermusic.cn/music/DJjjbdb-yxjh.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjjbdb-yxjh.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 106,
+    "title": "一笑江湖 (DJ弹鼓版)",
+    "artist": "闻人听書",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJwrtstgb-jhyx.jpg",
+    "url": "https://moyermusic.cn/music/DJwrtstgb-jhyx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJwrtstgb-jhyx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 107,
+    "title": "怎叹",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-zt.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-zt.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-zt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 108,
+    "title": "怎叹 (DJ降调版)",
+    "artist": "郑鱼",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJzy-zt.jpg",
+    "url": "https://moyermusic.cn/music/DJzy-zt.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJzy-zt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 109,
+    "title": "怎叹",
+    "artist": "郑鱼",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zy-zt.jpg",
+    "url": "https://moyermusic.cn/music/zy-zt.flac",
+    "lrc": "https://moyermusic.cn/lrc/zy-zt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 110,
+    "title": "怎叹（沈念版）",
+    "artist": "郑鱼",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJzysnb-zt.jpg",
+    "url": "https://moyermusic.cn/music/DJzysnb-zt.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJzysnb-zt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 111,
+    "title": "怎叹 (DJ版)",
+    "artist": "DJ酱、Dr.Phonk",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJdyb-zt.mp4",
+    "url": "https://moyermusic.cn/music/DJdyb-zt.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJdyb-zt.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 112,
+    "title": "离人赋DJ",
+    "artist": "云汐",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJyx-lrf.png",
+    "url": "https://moyermusic.cn/music/DJyx-lrf.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJyx-lrf.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 113,
+    "title": "笑纳DJ",
+    "artist": "花僮",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJht-xn.mp4",
+    "url": "https://moyermusic.cn/music/DJht-xn.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJht-xn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 114,
+    "title": "笑纳",
+    "artist": "花僮",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/ht-xn.jpg",
+    "url": "https://moyermusic.cn/music/ht-xn.flac",
+    "lrc": "https://moyermusic.cn/lrc/ht-xn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 115,
+    "title": "天下",
+    "artist": "等什么君",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/dsmj-tx.jpg",
+    "url": "https://moyermusic.cn/music/dsmj-tx.flac",
+    "lrc": "https://moyermusic.cn/lrc/dsmj-tx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 116,
+    "title": "天下",
+    "artist": "张杰",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/zj-tx.png",
+    "url": "https://moyermusic.cn/music/zj-tx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/zj-tx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 117,
+    "title": "天下DJ",
+    "artist": "张杰、DJ Wave",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJzj-tx.mp4",
+    "url": "https://moyermusic.cn/music/DJzj-tx.mp3",
+    "lrc": "https://moyermusic.cn/lrc/DJzj-tx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 118,
+    "title": "天下降调版",
+    "artist": "小柠",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/DJjdb-tx.png",
+    "url": "https://moyermusic.cn/music/DJjdb-tx.flac",
+    "lrc": "https://moyermusic.cn/lrc/DJjdb-tx.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 119,
+    "title": "长安姑娘(0.9x降调) (DJ黑楼兰版)",
+    "artist": "DJ McYaoyao",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djsnb-cagn.jpg",
+    "url": "https://moyermusic.cn/music/djsnb-cagn.flac",
+    "lrc": "https://moyermusic.cn/lrc/djsnb-cagn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 120,
+    "title": "长安姑娘 (降调版)",
+    "artist": "余又",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djjdb-cagn.mp4",
+    "url": "https://moyermusic.cn/music/djjdb-cagn.flac",
+    "lrc": "https://moyermusic.cn/lrc/djjdb-cagn.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 121,
+    "title": "探窗 (DJlucky小阳版)",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djxyb-tc.jpg",
+    "url": "https://moyermusic.cn/music/djxyb-tc.flac",
+    "lrc": "https://moyermusic.cn/lrc/djxyb-tc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 122,
+    "title": "探窗",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/qya-tc.jpg",
+    "url": "https://moyermusic.cn/music/qya-tc.flac",
+    "lrc": "https://moyermusic.cn/lrc/qya-tc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 123,
+    "title": "探窗",
+    "artist": "国风新语",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/gfxy-tc.jpg",
+    "url": "https://moyermusic.cn/music/gfxy-tc.flac",
+    "lrc": "https://moyermusic.cn/lrc/gfxy-tc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 124,
+    "title": "探窗 (DJ铁柱版)",
+    "artist": "浮生梦",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djtzb-tc.jpg",
+    "url": "https://moyermusic.cn/music/djtzb-tc.flac",
+    "lrc": "https://moyermusic.cn/lrc/djtzb-tc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 125,
+    "title": "探窗 (DJ-Siqe版)",
+    "artist": "浅影阿",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djsipe-tc.jpg",
+    "url": "https://moyermusic.cn/music/djsipe-tc.flac",
+    "lrc": "https://moyermusic.cn/lrc/djsipe-tc.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 126,
+    "title": "伯虎说 (feat.唐伯虎Annie)",
+    "artist": "伯爵Johnny、唐伯虎Annie",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/bj-bhs.jpg",
+    "url": "https://moyermusic.cn/music/bj-bhs.flac",
+    "lrc": "https://moyermusic.cn/lrc/bj-bhs.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 127,
+    "title": "伯虎说 (停顿DJ完整版)",
+    "artist": "缘为冰、唐伯虎Annie",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djtdb-bhs.jpg",
+    "url": "https://moyermusic.cn/music/djtdb-bhs.flac",
+    "lrc": "https://moyermusic.cn/lrc/djtdb-bhs.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 128,
+    "title": "伯虎说 (哈基米版)",
+    "artist": "阿缘缘Mobie",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/djhjm-bhs.jpg",
+    "url": "https://moyermusic.cn/music/djhjm-bhs.flac",
+    "lrc": "https://moyermusic.cn/lrc/djhjm-bhs.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 129,
+    "title": "芒种",
+    "artist": "音阙诗听、赵方婧",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/yqst-mz.jpg",
+    "url": "https://moyermusic.cn/music/yqst-mz.flac",
+    "lrc": "https://moyermusic.cn/lrc/yqst-mz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 130,
+    "title": "芒种 (小提琴版)",
+    "artist": "音阙诗听",
+    "category": "古风",
+    "cover": "https://moyermusic.cn/cover/xtqb-mz.jpg",
+    "url": "https://moyermusic.cn/music/xtqb-mz.flac",
+    "lrc": "https://moyermusic.cn/lrc/xtqb-mz.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 131,
+    "title": "Nevada",
+    "artist": "Vicetone、Cozi Zuehlsdorff",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/1772513256946_hf2nv.mp4",
+    "url": "https://moyermusic.cn/music/1772513232559_oivrft.flac",
+    "lrc": "https://moyermusic.cn/lrc/1772513266458_fwfvbw.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 132,
+    "title": "Solo Dance",
+    "artist": "Martin Jensen",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/1772514682129_8x3jo.mp4",
+    "url": "https://moyermusic.cn/music/1772514649289_t1m5in.flac",
+    "lrc": "https://moyermusic.cn/lrc/1772514689195_jhbx9b.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 133,
+    "title": "Shots (Broiler Remix)",
+    "artist": "Imagine Dragons、Broiler",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/1772515957113_6dqkph.mp4",
+    "url": "https://moyermusic.cn/music/1772515924329_x7b1z.flac",
+    "lrc": "https://moyermusic.cn/lrc/1772515965349_ia268n.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 134,
+    "title": "East of Eden",
+    "artist": "Zella Day",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/1772516389023_yspxfk.mp4",
+    "url": "https://moyermusic.cn/music/1772516341773_5vbes.flac",
+    "lrc": "https://moyermusic.cn/lrc/1772516398738_jyu7wl.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 135,
+    "title": "Cheap Thrills",
+    "artist": "Sia",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/Cheap Thrills.mp4",
+    "url": "https://moyermusic.cn/music/Cheap Thrills.flac",
+    "lrc": "https://moyermusic.cn/lrc/Cheap Thrills.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 136,
+    "title": "What Makes You Beautiful",
+    "artist": "One Direction",
+    "category": "流行",
+    "cover": "https://moyermusic.cn/cover/What Makes You Beautiful.mp4",
+    "url": "https://moyermusic.cn/music/What Makes You Beautiful.flac",
+    "lrc": "https://moyermusic.cn/lrc/What Makes You Beautiful.lrc",
+    "isPrivate": false
+  },
+  {
+    "id": 1001,
+    "title": "123",
+    "artist": "123",
+    "category": "123",
+    "cover": "",
+    "url": "https://moyermusic.cn/music/1772533958035_jtns3e.enc",
+    "lrc": "",
+    "isPrivate": true
+  },
+  {
+    "id": 1002,
+    "title": "123",
+    "artist": "123",
+    "category": "123",
+    "cover": "",
+    "url": "https://moyermusic.cn/music/1772534306814_wpx069.enc",
+    "lrc": "",
+    "isPrivate": true
+  }
+]
