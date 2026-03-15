@@ -56,7 +56,7 @@
 
 | 登录界面 | 主仪表盘 |
 | :---: | :---: |
-| ![登录界面](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/dl.png) | ![主界面](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/zjm.png) |
+| ![主界面](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/zjm.png) | ![云端上传/私密音乐加密](https://moyermusic.cn/moyer-space-cover/moyer-music-cover/jm.png) |
 
 | 私人音乐（已锁定）| 播放界面 |
 | :---: | :---: |
