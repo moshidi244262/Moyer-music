@@ -107,7 +107,8 @@ moyer-music/
 ├── songs.json           # 音乐数据库(示例)
 ├── icon-192.png         # PWA图标(192x192)
 ├── icon-512.png         # PWA图标(512x512)
-└── README.md            # 项目说明文档
+├── README.md            # 项目说明文档
+└── LICENSE              # 许可证
 ```
 
 ### 核心文件说明
