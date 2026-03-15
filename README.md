@@ -1,4 +1,3 @@
-```markdown
 # 🎵 Moyer Music - 现代云端音乐流媒体平台
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -338,4 +337,3 @@ const decryptAudio = async (encryptedUrl) => {
 
 > 音乐是时间的艺术，代码是空间的诗篇。  
 > 让每一段旋律，都能在数字世界中完美重现。
-```
