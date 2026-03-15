@@ -8,7 +8,7 @@
 
 **一个功能完整、性能卓越的现代音乐流媒体应用**，支持PWA安装、离线播放、动态歌词、深色模式、私人加密空间，并已封装为Android应用。
 
-🌐 **在线体验**: [https://moyermusic.cn](https://moyermusic.cn)  
+🌐 **在线体验**: [https://moyer-music.vercel.app/](https://moyer-music.vercel.app/)  
 📱 **PWA应用**: 支持添加到主屏幕，获得原生应用体验  
 🤖 **Android版**: 已通过Android Studio封装为独立应用
 
