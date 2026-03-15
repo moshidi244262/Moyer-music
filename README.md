@@ -47,6 +47,19 @@
 
 ---
 
+## 📸 界面预览
+
+> *注：以下为示意图。*
+
+| 登录界面 | 主仪表盘 |
+| :---: | :---: |
+| ![登录界面](https://moyermusic.cn/moyer-space-cover/dljm.jpg) | ![主界面](https://moyermusic.cn/moyer-space-cover/zybp.jpg) |
+
+| 密码库 (已锁定) | 工具模块 |
+| :---: | :---: |
+| ![密码库](https://moyermusic.cn/moyer-space-cover/mmk.jpg) | ![工具](https://moyermusic.cn/moyer-space-cover/gjmk.jpg) |
+
+
 ## 🏗️ 技术架构
 
 ### 前端技术栈
