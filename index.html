@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#121826">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon-192.png">
+    
+    <title>Moyer's Music App</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+        .animate-slow-zoom { animation: slowZoom 25s ease-in-out infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(0.95); }
+        }
+
+        body {
+            user-select: none; -webkit-user-select: none; overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f0f4f8; 
+            color: #1e293b; transition: background-color 0.3s ease, color 0.3s ease;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        html.dark body { background-color: #121826; color: #e2e8f0; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        html.dark .glass {
+            background: rgba(30, 41, 59, 0.75); border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body> 
+    <div id="root">
+        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #121826; color: #38bdf8;">
+            <i class="fas fa-music" style="font-size: 3.5rem; margin-bottom: 1.5rem; animation: pulse 2s ease-in-out infinite;"></i>
+            <p style="font-family: sans-serif; font-weight: bold; letter-spacing: 2px; font-size: 1.2rem; color: #e2e8f0;">Moyer Music</p>
+            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.8rem;">正在唤醒音乐引擎...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: { dark: { bg: '#121826', surface: '#1e293b', accent: '#38bdf8' } },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'slide-up': 'slideUp 0.3s ease-out forwards',
+                        'slide-in': 'slideIn 0.3s ease-out forwards',
+                        'fade-in': 'fadeIn 0.2s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: { '0%': { transform: 'translateY(100%)' }, '100%': { transform: 'translateY(0)' } },
+                        slideIn: { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(0)' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+        const SITE_PASSWORD_HASH = "MTIzNDU2"; 
+        const PRIVATE_PASSWORD_HASH = "MDAwMDAw"; 
+        const CRYPTO_KEY = "123456a\\"; 
+
+        const parseLrc = (lrcString) => {
+            if (!lrcString) return [];
+            const lines = lrcString.split('\n');
+            const result = [];
+            const timeReg = /\[(\d{2}):(\d{2})\.(\d{2,3})\]/;
+            lines.forEach(line => {
+                const match = timeReg.exec(line);
+                if (match) {
+                    const min = parseInt(match[1]);
+                    const sec = parseInt(match[2]);
+                    const ms = parseInt(match[3].padEnd(3, '0'));
+                    const time = min * 60 + sec + ms / 1000;
+                    const text = line.replace(timeReg, '').trim();
+                    if (text) result.push({ time, text });
+                }
+            });
+            return result;
+        };
+
+        const formatTime = (time) => {
+            if (!time) return "00:00";
+            const min = Math.floor(time / 60);
+            const sec = Math.floor(time % 60);
+            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        };
+
+        const CoverImage = ({ src, className, style, iconClass = "text-xl", alt = "cover" }) => {
+            const [status, setStatus] = useState("loading");
+
+            useEffect(() => {
+                if (!src) { setStatus("error"); return; }
+                if (src.toLowerCase().endsWith('.mp4')) { 
+                    setStatus("error"); 
+                    return; 
+                }
+                setStatus("loading");
+                const img = new Image();
+                img.src = src;
+                img.onload = () => setStatus("loaded");
+                img.onerror = () => setStatus("error");
+                return () => { img.onload = null; img.onerror = null; };
+            }, [src]);
+
+            if (status !== "loaded") {
+                return (
+                    <div className={`${className} flex items-center justify-center bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600 transition-colors duration-300`} style={style}>
+                        <i className={`fas fa-compact-disc ${iconClass}`}></i>
+                    </div>
+                );
+            }
+            return <img src={src} className={`${className} transition-opacity duration-300`} style={style} alt={alt} />;
+        };
+
+        function App() {
+            const [isDarkMode, setIsDarkMode] = useState(false); 
+            const [songsDB, setSongsDB] = useState([]);
+            const [isLoadingSongs, setIsLoadingSongs] = useState(true);
+            const [isSiteUnlocked, setIsSiteUnlocked] = useState(false);
+            const [isPrivateUnlocked, setIsPrivateUnlocked] = useState(false);
+            
+            const [passwordInput, setPasswordInput] = useState("");
+            const [privatePasswordInput, setPrivatePasswordInput] = useState(""); 
+            
+            const [currentTab, setCurrentTab] = useState("public");
+            const [searchQuery, setSearchQuery] = useState("");
+            const [activeCategory, setActiveCategory] = useState("全部");
+            const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+            
+            const [isPageVisible, setIsPageVisible] = useState(true);
+
+            const [isFullPlayerOpen, setIsFullPlayerOpen] = useState(false);
+            const [showControls, setShowControls] = useState(false);
+            const [isLocked, setIsLocked] = useState(false);
+            const [isLandscape, setIsLandscape] = useState(false);
+
+            const [currentSong, setCurrentSong] = useState(null);
+            const [playableAudioUrl, setPlayableAudioUrl] = useState("");
+            const [playableCoverUrl, setPlayableCoverUrl] = useState("");
+            const [lrcContent, setLrcContent] = useState("");
+            const [isDecrypting, setIsDecrypting] = useState(false);
+
+            const [isPlaying, setIsPlaying] = useState(false);
+
+            const [currentTime, setCurrentTime] = useState(0);
+            const [duration, setDuration] = useState(0);
+            const [playMode, setPlayMode] = useState("random");
+            
+            const audioRef = useRef(null);
+
+            useEffect(() => {
+                const handleVisChange = () => {
+                    setIsPageVisible(document.visibilityState === 'visible');
+                    if (document.visibilityState === 'visible' && isPlaying && audioRef.current?.paused) {
+                        audioRef.current.play().catch(()=>{});
+                    }
+                };
+                document.addEventListener("visibilitychange", handleVisChange);
+                return () => document.removeEventListener("visibilitychange", handleVisChange);
+            }, [isPlaying]);
+
+            useEffect(() => {
+                const hideSystemBars = async () => {
+                    try {
+                        if (window.Capacitor && window.Capacitor.Plugins.StatusBar) {
+                            await window.Capacitor.Plugins.StatusBar.hide().catch(()=>{});
+                        }
+                    } catch (e) { }
+                };
+                hideSystemBars();
+                let timeoutId;
+                const autoHide = () => {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(hideSystemBars, 3000);
+                };
+                window.addEventListener('touchstart', autoHide);
+                window.addEventListener('resize', autoHide);
+                document.addEventListener('visibilitychange', () => {
+                    if (document.visibilityState === 'visible') hideSystemBars();
+                });
+                const intervalId = setInterval(hideSystemBars, 5000);
+                return () => {
+                    window.removeEventListener('touchstart', autoHide);
+                    window.removeEventListener('resize', autoHide);
+                    clearTimeout(timeoutId);
+                    clearInterval(intervalId);
+                };
+            }, []);
+
+            const isLockedRef = useRef(isLocked);
+            useEffect(() => { isLockedRef.current = isLocked; }, [isLocked]);
+            
+            const isFullPlayerOpenRef = useRef(isFullPlayerOpen);
+            useEffect(() => { isFullPlayerOpenRef.current = isFullPlayerOpen; }, [isFullPlayerOpen]);
+
+            useEffect(() => {
+                const handlePopState = (e) => {
+                    if (isFullPlayerOpenRef.current) {
+                        if (isLockedRef.current) window.history.pushState({ fullscreen: true }, "");
+                        else handleCloseFullPlayer(null, true);
+                    }
+                };
+                window.addEventListener("popstate", handlePopState);
+                return () => window.removeEventListener("popstate", handlePopState);
+            }, []);
+
+            useEffect(() => {
+                if (isDarkMode) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }, [isDarkMode]);
+
+            useEffect(() => {
+                fetch('songs.json').then(res => res.json())
+                    .then(data => { setSongsDB(data); setIsLoadingSongs(false); })
+                    .catch(err => { console.error("加载失败:", err); setIsLoadingSongs(false); });
+                
+                const handleContext = (e) => e.preventDefault();
+                document.addEventListener("contextmenu", handleContext);
+                return () => document.removeEventListener("contextmenu", handleContext);
+            }, []);
+
+            const filteredSongs = useMemo(() => {
+                let list = currentTab === 'public' ? songsDB.filter(s => !s.isPrivate) : songsDB.filter(s => s.isPrivate);
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase();
+                    list = list.filter(s => s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q));
+                } else if (activeCategory !== "全部") {
+                    list = list.filter(s => (s.category || "其他") === activeCategory);
+                }
+                return list;
+            }, [songsDB, currentTab, searchQuery, activeCategory]);
+
+            const categories = useMemo(() => {
+                if (currentTab === 'private') {
+                    return ["全部", "子非鱼", "陈璐", "南征","竹曦","小爽","岁岁","ASMR", "其他"];
+                } else {
+                    const baseList = songsDB.filter(s => !s.isPrivate);
+                    return ["全部", ...Array.from(new Set(baseList.map(s => s.category || "其他")))];
+                }
+            }, [songsDB, currentTab]);
+
+            useEffect(() => { setActiveCategory("全部"); }, [currentTab]);
+
+            const togglePlay = (e) => {
+                if(e) e.stopPropagation();
+                if (!audioRef.current || !playableAudioUrl) return;
+                
+                if (audioRef.current.paused) {
+                    audioRef.current.play().catch(e => console.log(e)); 
+                } else {
+                    audioRef.current.pause(); 
+                }
+            };
+
+            const toggleOrientation = async (e) => {
+                if (e) e.stopPropagation();
+                try {
+                    const targetOrientation = isLandscape ? 'portrait' : 'landscape';
+                    if (window.Capacitor && window.Capacitor.Plugins.ScreenOrientation) {
+                        await window.Capacitor.Plugins.ScreenOrientation.lock({ type: targetOrientation });
+                        setIsLandscape(!isLandscape);
+                    } 
+                    else if (window.screen && window.screen.orientation && window.screen.orientation.lock) {
+                        await window.screen.orientation.lock(targetOrientation);
+                        setIsLandscape(!isLandscape);
+                    }
+                } catch (err) { setIsLandscape(!isLandscape); }
+            };
+
+            const handleOpenFullPlayer = async () => {
+                if (!isFullPlayerOpen) window.history.pushState({ fullscreen: true }, "");
+                setIsFullPlayerOpen(true);
+                setShowControls(false); 
+                setIsLocked(false);     
+                try {
+                    const el = document.documentElement;
+                    if (el.requestFullscreen) await el.requestFullscreen();
+                    else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+                    
+                    if (window.Capacitor && window.Capacitor.Plugins.ScreenOrientation) {
+                        await window.Capacitor.Plugins.ScreenOrientation.lock({ type: 'landscape' });
+                        setIsLandscape(true);
+                    } else if (window.screen && window.screen.orientation && window.screen.orientation.lock) {
+                        await window.screen.orientation.lock('landscape').catch(() => {});
+                        setIsLandscape(true);
+                    }
+                } catch (err) {}
+            };
+
+            const handleCloseFullPlayer = async (e, fromPopState = false) => {
+                if(e) e.stopPropagation();
+                setIsFullPlayerOpen(false);
+                setIsLocked(false);
+                if (!fromPopState) window.history.back();
+
+                try {
+                    if (document.fullscreenElement) {
+                        if (document.exitFullscreen) await document.exitFullscreen();
+                        else if (document.webkitExitFullscreen) await document.webkitExitFullscreen();
+                    }
+                    if (window.Capacitor && window.Capacitor.Plugins.ScreenOrientation) {
+                        await window.Capacitor.Plugins.ScreenOrientation.lock({ type: 'portrait' });
+                        setIsLandscape(false);
+                    } else if (window.screen && window.screen.orientation && window.screen.orientation.unlock) {
+                        window.screen.orientation.unlock();
+                        setIsLandscape(false);
+                    }
+                } catch (err) {}
+            };
+
+            const playSong = (song) => {
+                if (currentSong?.id === song.id) handleOpenFullPlayer();
+                else {
+                    setCurrentSong(song); 
+                }
+            };
+
+            const getNextSongIndex = useCallback((step) => {
+                const playlist = filteredSongs.length > 0 ? filteredSongs : songsDB; 
+                if (playlist.length === 0) return -1;
+                const currentIdx = playlist.findIndex(s => s.id === currentSong?.id);
+                if (playMode === 'random') return Math.floor(Math.random() * playlist.length);
+                if (playMode === 'loop' && step === 1) return currentIdx; 
+                let nextIdx = currentIdx + step;
+                if (nextIdx >= playlist.length) nextIdx = 0;
+                if (nextIdx < 0) nextIdx = playlist.length - 1;
+                return nextIdx;
+            }, [filteredSongs, songsDB, currentSong, playMode]);
+
+            const playNext = useCallback((e) => { 
+                if(e) e.stopPropagation(); 
+                const idx = getNextSongIndex(1); 
+                if (idx !== -1) playSong((filteredSongs.length > 0 ? filteredSongs : songsDB)[idx]); 
+            }, [getNextSongIndex, filteredSongs, songsDB]);
+
+            const playPrev = useCallback((e) => { 
+                if(e) e.stopPropagation(); 
+                const idx = getNextSongIndex(-1); 
+                if (idx !== -1) playSong((filteredSongs.length > 0 ? filteredSongs : songsDB)[idx]); 
+            }, [getNextSongIndex, filteredSongs, songsDB]);
+
+            const handleEnded = () => { 
+                if (playMode === 'loop') { 
+                    audioRef.current.currentTime = 0; 
+                    audioRef.current.play().catch(e => console.error(e)); 
+                } else {
+                    const playlist = filteredSongs.length > 0 ? filteredSongs : songsDB;
+                    if (playlist.length > 0 && audioRef.current) {
+                        const currentIdx = playlist.findIndex(s => s.id === currentSong?.id);
+                        let nextIdx = playMode === 'random' ? Math.floor(Math.random() * playlist.length) : currentIdx + 1;
+                        if (nextIdx >= playlist.length) nextIdx = 0;
+
+                        const nextSong = playlist[nextIdx];
+                        
+                        // 绝对的 DOM 控制！趁着后台还没休眠，直接夺取控制权
+                        if (nextSong && !nextSong.url.endsWith('.enc')) {
+                            audioRef.current.src = nextSong.url;
+                            audioRef.current.load();
+                            audioRef.current.play().catch(e => console.warn("后台 DOM 直通车播放失败:", e));
+                        }
+                    }
+                    
+                    // 随后更新 React 状态，因为前面解绑了 src，这次 React 渲染再也无法打断我们的音频了！
+                    playNext();
+                }
+            };
+
+            // 使用 Refs 避免事件监听器中的闭包过期陷阱
+            const playNextRef = useRef(playNext);
+            const playPrevRef = useRef(playPrev);
+            useEffect(() => { 
+                playNextRef.current = playNext; 
+                playPrevRef.current = playPrev; 
+            }, [playNext, playPrev]);
+
+            // 统一注册与接管 Android 原生锁屏控制和 Web MediaSession
+            useEffect(() => {
+                const isNative = typeof window.Capacitor !== 'undefined' && window.Capacitor.isNativePlatform();
+                const MusicControls = window.Capacitor?.Plugins?.MusicControls;
+                let controlsListener = null;
+
+                if (isNative && MusicControls) {
+                    controlsListener = MusicControls.addListener('controlsNotification', (info) => {
+                        const message = info.message;
+                        if (message === 'music-controls-next') {
+                            playNextRef.current && playNextRef.current();
+                        } else if (message === 'music-controls-previous') {
+                            playPrevRef.current && playPrevRef.current();
+                        } else if (message === 'music-controls-pause') {
+                            audioRef.current?.pause();
+                        } else if (message === 'music-controls-play') {
+                            audioRef.current?.play();
+                        } else if (message === 'music-controls-destroy') {
+                            audioRef.current?.pause();
+                        }
+                    });
+                } else if ('mediaSession' in navigator) {
+                    navigator.mediaSession.setActionHandler('play', () => { if (audioRef.current) audioRef.current.play(); });
+                    navigator.mediaSession.setActionHandler('pause', () => { if (audioRef.current) audioRef.current.pause(); });
+                    navigator.mediaSession.setActionHandler('previoustrack', () => playPrevRef.current && playPrevRef.current());
+                    navigator.mediaSession.setActionHandler('nexttrack', () => playNextRef.current && playNextRef.current());
+                }
+
+                return () => {
+                    if (controlsListener) {
+                        controlsListener.remove().catch(() => {});
+                    }
+                };
+            }, []);
+
+            // 在切换新歌时准备媒体信息和锁屏界面
+            useEffect(() => {
+                if (!currentSong) return;
+                let isCanceled = false;
+
+                const fetchEncryptedBlob = async (url) => {
+                    try {
+                        const res = await fetch(url, { mode: 'cors' });
+                        if (!res.ok) throw new Error("Network response was not ok");
+                        const buffer = await res.arrayBuffer();
+                        let view = new Uint8Array(buffer);
+                        // 解码
+                        const key = new TextEncoder().encode(CRYPTO_KEY);
+                        for (let i = 0; i < view.length; i++) view[i] ^= key[i % key.length];
+                        const blob = new Blob([view], { type: 'audio/mpeg' });
+                        return URL.createObjectURL(blob);
+                    } catch(e) { 
+                        return url; 
+                    }
+                };
+
+                const prepareMedia = async () => {
+                    const isAudioEncrypted = currentSong.url && currentSong.url.endsWith('.enc');
+                    setPlayableCoverUrl(currentSong.cover || "");
+
+                    // 1. 根据环境部署锁屏 UI 信息
+                    const isNative = typeof window.Capacitor !== 'undefined' && window.Capacitor.isNativePlatform();
+                    const MusicControls = window.Capacitor?.Plugins?.MusicControls;
+
+                    if (isNative && MusicControls) {
+                        MusicControls.create({
+                            track: currentSong.title,
+                            artist: currentSong.artist,
+                            cover: currentSong.cover && !currentSong.cover.endsWith('.mp4') ? currentSong.cover : '',
+                            isPlaying: true,
+                            dismissable: false,
+                            hasPrev: true,
+                            hasNext: true,
+                            hasClose: true,
+                            playIcon: 'media_play',
+                            pauseIcon: 'media_pause',
+                            prevIcon: 'media_prev',
+                            nextIcon: 'media_next',
+                            closeIcon: 'media_close',
+                            notificationIcon: 'notification'
+                        }).catch(() => {});
+                    } else if ('mediaSession' in navigator) {
+                        navigator.mediaSession.metadata = new MediaMetadata({ 
+                            title: currentSong.title, 
+                            artist: currentSong.artist, 
+                            artwork: currentSong.cover && !currentSong.cover.endsWith('.mp4') ? [{ src: currentSong.cover, sizes: '512x512', type: 'image/jpeg' }] : []
+                        });
+                    }
+
+                    // 2. 核心修改：DOM 直通车，完全绕过 React 异步渲染，直接下达底层 DOM 指令
+                    if (!isAudioEncrypted) {
+                        setIsDecrypting(false);
+                        if (!isCanceled) {
+                            setPlayableAudioUrl(currentSong.url); 
+                            
+                            // 【防冲突拦截】：检查原生 audio 的 src 是否已经是这首歌了
+                            if (audioRef.current && !audioRef.current.src.includes(currentSong.url)) {
+                                audioRef.current.src = currentSong.url;
+                                audioRef.current.load();
+                                audioRef.current.play().catch(e => console.warn("后台播放拦截:", e));
+                            }
+                        }
+                    } else {
+                        setIsDecrypting(true);
+                        let finalAudio = await fetchEncryptedBlob(currentSong.url);
+                        if (!isCanceled) {
+                            setPlayableAudioUrl(prevUrl => {
+                                if (prevUrl && prevUrl.startsWith('blob:')) URL.revokeObjectURL(prevUrl);
+                                return finalAudio;
+                            });
+                            setIsDecrypting(false);
+                            
+                            // 【防冲突拦截】
+                            if (audioRef.current && audioRef.current.src !== finalAudio) {
+                                audioRef.current.src = finalAudio;
+                                audioRef.current.load();
+                                audioRef.current.play().catch(e => console.warn("后台解密播放拦截:", e));
+                            }
+                        }
+                    }
+                };
+
+                prepareMedia();
+
+                if (currentSong.lrc) {
+                    fetch(currentSong.lrc).then(r => r.text()).then(txt => {
+                        if(!isCanceled) setLrcContent(txt);
+                    }).catch(()=> setLrcContent(""));
+                } else {
+                    setLrcContent("");
+                }
+
+                return () => { isCanceled = true; };
+            }, [currentSong]);
+
+            const lrcLines = useMemo(() => parseLrc(lrcContent), [lrcContent]);
+            const activeLrcIndex = useMemo(() => {
+                if (!lrcLines.length) return -1;
+                return lrcLines.findLastIndex(line => currentTime >= line.time);
+            }, [currentTime, lrcLines]);
+
+            const isVideoWallpaper = currentSong?.cover && currentSong.cover.toLowerCase().includes('.mp4');
+
+            const backgroundLayer = useMemo(() => {
+                if (!currentSong) return null;
+                return (
+                    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${isDarkMode ? 'bg-black' : 'bg-slate-200'}`}>
+                        {isVideoWallpaper && isPageVisible ? (
+                            <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+                                <video src={playableCoverUrl} autoPlay loop muted playsInline disablePictureInPicture disableRemotePlayback
+                                    className="absolute inset-0 w-full h-full object-cover opacity-40 blur-2xl scale-125" />
+                                <video src={playableCoverUrl} autoPlay loop muted playsInline disablePictureInPicture disableRemotePlayback
+                                    className={`relative z-10 w-full h-full transition-all duration-500 drop-shadow-2xl ${isLandscape ? 'object-cover' : 'object-contain'}`}
+                                    style={{ transform: 'translateZ(0)', willChange: 'transform' }} />
+                            </div>
+                        ) : isVideoWallpaper && !isPageVisible ? (
+                            <div className="absolute inset-0 bg-slate-900 w-full h-full flex items-center justify-center">
+                                <i className="fas fa-video-slash text-5xl text-slate-700 opacity-30"></i>
+                            </div>
+                        ) : (
+                            <img src={playableCoverUrl} className="w-full h-full object-cover opacity-90 animate-slow-zoom" alt="wallpaper" onError={(e) => e.target.style.display = 'none'} />
+                        )}
+                        {isVideoWallpaper && <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10"></div>}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-70 dark:opacity-90 z-10"></div>
+                    </div>
+                );
+            }, [playableCoverUrl, isVideoWallpaper, isDarkMode, currentSong, isLandscape, isPageVisible]);
+
+            if (!isSiteUnlocked) {
+                return (
+                    <div className="flex flex-col items-center justify-center h-screen bg-[#f0f4f8] dark:bg-[#121826] p-6 relative overflow-hidden transition-colors duration-500">
+                        <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-sky-400 dark:bg-sky-500 rounded-full filter blur-3xl opacity-30 dark:opacity-20 mix-blend-normal pointer-events-none"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-purple-400 dark:bg-purple-500 rounded-full filter blur-3xl opacity-30 dark:opacity-20 mix-blend-normal pointer-events-none"></div>
+                        
+                        <div className="z-10 bg-white/60 dark:bg-slate-800/50 p-8 rounded-2xl border border-white/50 dark:border-slate-700 backdrop-blur-xl shadow-xl w-full max-w-sm transition-colors duration-500">
+                            <div className="text-center mb-8">
+                                <div className="w-16 h-16 bg-gradient-to-tr from-sky-400 to-purple-500 rounded-xl mx-auto flex items-center justify-center mb-4 shadow-lg shadow-sky-500/30">
+                                    <i className="fas fa-music text-2xl text-white"></i>
+                                </div>
+                                <h1 className="text-2xl font-bold text-slate-800 dark:text-white tracking-wide">Moyer Music</h1>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">私人音乐空间</p>
+                            </div>
+                            <input type="password" className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 rounded-xl px-4 py-3 mb-4 text-center text-slate-800 dark:text-white tracking-widest focus:border-sky-500 outline-none transition"
+                                value={passwordInput} onChange={e => setPasswordInput(e.target.value)} placeholder="输入访问密码"
+                                onKeyDown={e => e.key === 'Enter' && (btoa(passwordInput) === SITE_PASSWORD_HASH ? setIsSiteUnlocked(true) : alert('密码错误'))}
+                            />
+                            <button onClick={() => btoa(passwordInput) === SITE_PASSWORD_HASH ? setIsSiteUnlocked(true) : alert('密码错误')}
+                                className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-sky-500/20 active:scale-95">
+                                进入空间
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="flex flex-col h-screen text-slate-800 dark:text-slate-200 bg-[#f0f4f8] dark:bg-[#121826]">
+                    <header className="flex items-center justify-between px-4 py-3 bg-[#f0f4f8]/90 dark:bg-[#121826]/90 backdrop-blur-md sticky top-0 z-20 border-b border-slate-200 dark:border-slate-800">
+                        <button onClick={() => setIsSidebarOpen(true)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-90 transition text-slate-600 dark:text-slate-300">
+                            <i className="fas fa-bars text-xl"></i>
+                        </button>
+                        <div className="flex-1 mx-4 max-w-md">
+                            <div className="relative group">
+                                <i className="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 group-focus-within:text-sky-500 dark:group-focus-within:text-sky-400 transition"></i>
+                                <input type="text" placeholder="搜索歌曲 / 歌手..." className="w-full bg-slate-200 dark:bg-slate-800 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition text-slate-800 dark:text-slate-200 placeholder-slate-500 dark:placeholder-slate-400"
+                                    value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+                            </div>
+                        </div>
+                        <button onClick={() => setIsDarkMode(!isDarkMode)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-90 transition text-slate-600 dark:text-slate-300">
+                            <i className={`fas ${isDarkMode ? 'fa-moon' : 'fa-sun'} text-xl`}></i>
+                        </button>
+                    </header>
+
+                    {!searchQuery && !(currentTab === 'private' && !isPrivateUnlocked) && (
+                        <div className="bg-[#f0f4f8] dark:bg-[#121826] pt-2 pb-2 px-4">
+                            <div className="flex space-x-3 overflow-x-auto no-scrollbar py-1">
+                                {categories.map(cat => (
+                                    <button key={cat} onClick={() => setActiveCategory(cat)}
+                                        className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-medium transition-all ${activeCategory === cat ? 'bg-sky-500 text-white shadow-md shadow-sky-500/30 scale-105' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700'}`}>
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    <main className="flex-1 overflow-y-auto p-4 pb-32 flex flex-col relative">
+                        {currentTab === 'private' && !isPrivateUnlocked ? (
+                            <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] space-y-6 animate-fade-in px-4">
+                                <div className="w-16 h-16 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center transition-colors shadow-inner">
+                                    <i className="fas fa-lock text-3xl text-purple-500 dark:text-purple-400"></i>
+                                </div>
+                                <div className="text-center space-y-1">
+                                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200">私人珍藏领域</h2>
+                                    <p className="text-sm text-slate-500 dark:text-slate-400">输入密码解锁您的专属音乐空间</p>
+                                </div>
+                                
+                                <div className="flex flex-col items-center space-y-4 w-full max-w-[240px] mt-4">
+                                    <input type="password" 
+                                        className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-center text-slate-800 dark:text-white transition-all tracking-[0.3em] shadow-sm font-bold text-lg"
+                                        placeholder="输入密码" value={privatePasswordInput} onChange={(e) => setPrivatePasswordInput(e.target.value)}
+                                        onKeyDown={(e) => { 
+                                            if (e.key === 'Enter') {
+                                                if (btoa(privatePasswordInput) === PRIVATE_PASSWORD_HASH) setIsPrivateUnlocked(true);
+                                                else alert('密码错误');
+                                            }
+                                        }} 
+                                    />
+                                    <button 
+                                        className="w-full bg-purple-500 hover:bg-purple-600 dark:hover:bg-purple-400 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-purple-500/30 active:scale-95"
+                                        onClick={() => {
+                                            if (btoa(privatePasswordInput) === PRIVATE_PASSWORD_HASH) setIsPrivateUnlocked(true);
+                                            else alert('密码错误');
+                                        }}>确认解锁</button>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 animate-fade-in">
+                                {filteredSongs.map(song => (
+                                    <div key={song.id} onClick={() => playSong(song)} className={`group relative flex items-center p-2 rounded-xl transition-all duration-300 cursor-pointer ${currentSong?.id === song.id ? 'bg-sky-100 dark:bg-gradient-to-r dark:from-sky-900/40 dark:to-slate-800 border-sky-300 dark:border-sky-500/30 shadow-sm' : 'bg-white/60 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:shadow-sm'}`}>
+                                        <div className="relative w-14 h-14 flex-shrink-0 mr-3 rounded-lg shadow-sm bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center overflow-hidden">
+                                            <i className={`fas fa-music text-slate-400 dark:text-slate-500 text-xl ${currentSong?.id === song.id && isPlaying ? 'animate-pulse text-sky-500 dark:text-sky-400' : ''}`}></i>
+                                            {currentSong?.id === song.id && (
+                                                <div className="absolute inset-0 bg-black/20 dark:bg-black/40 flex items-center justify-center backdrop-blur-[1px]">
+                                                    <i className={`fas ${isPlaying ? 'fa-volume-up' : 'fa-pause'} text-white text-xs`}></i>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className={`text-sm font-bold truncate ${currentSong?.id === song.id ? 'text-sky-600 dark:text-sky-400' : 'text-slate-800 dark:text-slate-200'}`}>{song.title}</div>
+                                            <div className="flex items-center mt-1 space-x-2">
+                                                <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{song.artist}</span>
+                                                {song.isPrivate && <span className="text-[10px] px-1.5 py-0.5 bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded flex items-center"><i className="fas fa-lock text-[8px] mr-1"></i>Private</span>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {filteredSongs.length === 0 && (
+                                    <div className="col-span-full text-center py-20 text-slate-400 dark:text-slate-500">
+                                        <i className="fas fa-music text-4xl mb-4 opacity-50"></i>
+                                        <p>没有找到相关歌曲</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </main>
+
+                    {currentSong && (
+                        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+0.5rem)] left-0 w-full z-30 animate-slide-up" onClick={handleOpenFullPlayer}>
+                            <div className="glass mx-2 rounded-2xl p-2 flex items-center shadow-xl shadow-slate-300/40 dark:shadow-black/50 cursor-pointer hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all">
+                                <div className="w-12 h-12 flex-shrink-0 relative">
+                                    <CoverImage src={playableCoverUrl} className={`w-full h-full rounded-full object-cover border-2 border-slate-200 dark:border-slate-700 ${isPlaying ? 'animate-spin-slow' : ''}`} />
+                                    <div className="absolute inset-0 bg-black/5 dark:bg-black/10 rounded-full pointer-events-none"></div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white dark:bg-slate-800 rounded-full border border-slate-300 dark:border-slate-600 pointer-events-none"></div>
+                                </div>
+                                <div className="flex-1 px-3 min-w-0">
+                                    <div className="text-sm font-bold text-slate-800 dark:text-white truncate">
+                                        {isDecrypting ? <span className="text-sky-500"><i className="fas fa-unlock mr-1"></i>解密中...</span> : (currentSong?.title || "未播放")}
+                                    </div>
+                                    <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                                        {isDecrypting ? "由于是私密音乐，正在解密..." : (lrcLines[activeLrcIndex]?.text || currentSong?.artist || "")}
+                                    </div>
+                                </div>
+                                
+                                <div className="flex items-center space-x-1.5 sm:space-x-2 pr-1">
+                                    <button onClick={(e) => { e.stopPropagation(); setPlayMode(m => m === 'sequence' ? 'random' : m === 'random' ? 'loop' : 'sequence'); }} className="w-8 h-8 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-sky-500 transition">
+                                        <i className={`fas fa-${playMode === 'sequence' ? 'list' : playMode === 'random' ? 'random' : 'redo'} text-[13px]`}></i>
+                                    </button>
+                                    <button onClick={playPrev} className="w-8 h-8 flex items-center justify-center text-slate-500 dark:text-slate-300 hover:text-slate-800 transition"><i className="fas fa-step-backward text-sm"></i></button>
+                                    <button onClick={togglePlay} disabled={isDecrypting} className={`w-9 h-9 flex items-center justify-center rounded-full border ${isDecrypting ? 'border-slate-300 text-slate-300 cursor-not-allowed' : 'border-slate-400 text-slate-700 dark:text-white'} transition`}>
+                                        {isDecrypting ? <i className="fas fa-spinner fa-spin text-sm"></i> : <i className={`fas fa-${isPlaying ? 'pause' : 'play'} text-sm ${isPlaying ? '' : 'ml-0.5'}`}></i>}
+                                    </button>
+                                    <button onClick={playNext} className="w-8 h-8 flex items-center justify-center text-slate-500 dark:text-slate-300 hover:text-slate-800 transition"><i className="fas fa-step-forward text-sm"></i></button>
+                                </div>
+                            </div>
+                            <div className="mx-4 mt-1 h-0.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-1">
+                                <div className="h-full bg-sky-500 dark:bg-sky-400 transition-all duration-300" style={{width: `${(currentTime/duration)*100}%`}}></div>
+                            </div>
+                        </div>
+                    )}
+
+                    {isSidebarOpen && (
+                        <div className="fixed inset-0 z-50 flex">
+                            <div className="absolute inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setIsSidebarOpen(false)}></div>
+                            <div className="relative w-64 bg-slate-50 dark:bg-slate-800 h-full shadow-2xl animate-slide-in flex flex-col transition-colors duration-300">
+                                <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                                    <h2 className="text-xl font-bold text-sky-500 dark:text-sky-400">Moyer Music</h2>
+                                    <button onClick={() => setIsSidebarOpen(false)}><i className="fas fa-times text-slate-400"></i></button>
+                                </div>
+                                <div className="flex-1 p-4 space-y-2">
+                                    <button onClick={() => { setCurrentTab('public'); setIsSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 transition ${currentTab === 'public' ? 'bg-sky-100 text-sky-600' : 'text-slate-600'}`}>
+                                        <i className="fas fa-headphones w-6 text-center"></i><span>常听音乐</span>
+                                    </button>
+                                    <button onClick={() => { setCurrentTab('private'); setIsSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 transition ${currentTab === 'private' ? 'bg-purple-100 text-purple-600' : 'text-slate-600'}`}>
+                                        <i className="fas fa-lock w-6 text-center"></i><span>私人珍藏</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {isFullPlayerOpen && (
+                        <div className="fixed inset-0 z-50 bg-black flex flex-col animate-slide-up" onClick={() => setShowControls(prev => !prev)}>
+                            {backgroundLayer}
+                            <div className={`absolute left-4 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 ease-out ${showControls ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0 pointer-events-none'}`}>
+                                <button onClick={(e) => { e.stopPropagation(); setIsLocked(!isLocked); }} className={`w-12 h-12 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white transition-all drop-shadow-lg ${isLocked ? 'text-sky-400 border-sky-400/50' : ''}`}>
+                                    <i className={`fas ${isLocked ? 'fa-lock' : 'fa-unlock'}`}></i>
+                                </button>
+                            </div>
+
+                            <div className={`absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 mt-2 transition-all duration-500 ease-out ${(showControls && !isLocked) ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`} onClick={(e) => e.stopPropagation()}>
+                                <button onClick={handleCloseFullPlayer} className="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full bg-black/20 backdrop-blur-md transition"><i className="fas fa-chevron-down"></i></button>
+                                <div className="flex space-x-3">
+                                    <button onClick={toggleOrientation} className="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full bg-black/20 backdrop-blur-md transition group">
+                                        <i className="fas fa-mobile-alt transition-transform duration-300" style={{ transform: isLandscape ? 'rotate(90deg)' : 'none' }}></i>
+                                    </button>
+                                    <button className="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full bg-black/20 backdrop-blur-md transition"><i className="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+
+                            <div className="relative z-10 flex-1 flex flex-col justify-end pb-[15vh] px-6 text-center pointer-events-none">
+                                <div className="space-y-3 md:space-y-4">
+                                    {isDecrypting ? (
+                                        <p className="text-sky-400 font-bold text-xl md:text-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] animate-pulse"><i className="fas fa-unlock mr-2"></i>加密文件解码中...</p>
+                                    ) : lrcLines.length > 0 ? (
+                                        <>
+                                            <p className="text-white/60 text-sm md:text-base drop-shadow-md transform transition-all duration-300">{activeLrcIndex > 0 ? lrcLines[activeLrcIndex - 1]?.text : ''}</p>
+                                            <p className="text-sky-400 font-bold text-xl md:text-2xl lg:text-3xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] transform scale-105 transition-all duration-300">{lrcLines[activeLrcIndex]?.text || (isPlaying ? "..." : "Moyer Music")}</p>
+                                            <p className="text-white/60 text-sm md:text-base drop-shadow-md transform transition-all duration-300">{activeLrcIndex < lrcLines.length - 1 ? lrcLines[activeLrcIndex + 1]?.text : ''}</p>
+                                        </>
+                                    ) : (
+                                        <p className="text-sky-400 font-bold text-xl md:text-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">纯音乐，请欣赏</p>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className={`absolute bottom-0 left-0 right-0 z-20 p-6 pb-10 transition-all duration-500 ease-out bg-transparent ${(showControls && !isLocked) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'}`} onClick={(e) => e.stopPropagation()}>
+                                <div className="mb-6 flex justify-between items-end px-2">
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">{isDecrypting ? "解密缓冲中" : currentSong?.title}</h2>
+                                        <p className="text-white/70 text-sm drop-shadow-lg">{currentSong?.artist}</p>
+                                    </div>
+                                    <button className="w-10 h-10 flex items-center justify-center text-sky-400 drop-shadow-lg"><i className="fas fa-heart text-xl"></i></button>
+                                </div>
+
+                                <div className="flex items-center space-x-3 mb-6 text-xs text-white/80 font-mono drop-shadow-lg px-2">
+                                    <span>{formatTime(currentTime)}</span>
+                                    <div className="flex-1 h-1 bg-white/30 rounded-full cursor-pointer relative group" onClick={(e) => {
+                                            const rect = e.currentTarget.getBoundingClientRect();
+                                            const percent = (e.clientX - rect.left) / rect.width;
+                                            audioRef.current.currentTime = percent * duration;
+                                        }}>
+                                        <div className="h-full bg-sky-400 rounded-full relative shadow-[0_0_10px_rgba(56,189,248,0.8)]" style={{width: `${(currentTime/duration)*100}%`}}>
+                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover:scale-100 transition-transform"></div>
+                                        </div>
+                                    </div>
+                                    <span>{formatTime(duration)}</span>
+                                </div>
+
+                                <div className="flex items-center justify-between px-2">
+                                    <button onClick={() => setPlayMode(m => m === 'sequence' ? 'random' : m === 'random' ? 'loop' : 'sequence')} className="text-white/70 hover:text-white transition p-2 drop-shadow-lg"><i className={`fas fa-${playMode === 'sequence' ? 'list' : playMode === 'random' ? 'random' : 'redo'} text-xl`}></i></button>
+                                    <button onClick={playPrev} className="text-white hover:text-sky-400 transition p-2 active:scale-90 drop-shadow-lg"><i className="fas fa-step-backward text-3xl"></i></button>
+                                    <button onClick={togglePlay} disabled={isDecrypting} className={`w-16 h-16 flex items-center justify-center text-white active:scale-95 transition drop-shadow-[0_0_15px_rgba(0,0,0,0.5)] ${isDecrypting ? 'opacity-50 cursor-not-allowed' : 'hover:text-sky-400'}`}>
+                                        {isDecrypting ? <i className="fas fa-spinner fa-spin text-[3rem]"></i> : <i className={`fas fa-${isPlaying ? 'pause-circle' : 'play-circle'} text-[4rem]`}></i>}
+                                    </button>
+                                    <button onClick={playNext} className="text-white hover:text-sky-400 transition p-2 active:scale-90 drop-shadow-lg"><i className="fas fa-step-forward text-3xl"></i></button>
+                                    <button className="text-white/70 hover:text-white transition p-2 drop-shadow-lg" onClick={() => alert('更多设置')}><i className="fas fa-sliders-h text-xl"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <audio 
+                        ref={audioRef}
+                        crossOrigin="anonymous"  
+                        preload="auto"
+                        playsInline={true}
+                        webkit-playsinline="true"
+                        x5-video-player-type="h5" 
+                        x5-video-player-fullscreen="false"
+                        onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+                        onDurationChange={(e) => setDuration(e.target.duration)}
+                        onEnded={handleEnded}
+                        onError={(e) => { 
+                            console.warn("播放中断或出错", e);
+                            if (playableAudioUrl && !isDecrypting) {
+                                setTimeout(() => { if (playNextRef.current) playNextRef.current(); }, 2500);
+                            }
+                        }}
+                        onPlay={() => {
+                            setIsPlaying(true);
+                            const isNative = typeof window.Capacitor !== 'undefined' && window.Capacitor.isNativePlatform();
+                            const MusicControls = window.Capacitor?.Plugins?.MusicControls;
+                            if (isNative && MusicControls) {
+                                MusicControls.updateIsPlaying({ isPlaying: true, elapsed: audioRef.current?.currentTime || 0 }).catch(()=>{});
+                            } else if ('mediaSession' in navigator) {
+                                navigator.mediaSession.playbackState = 'playing';
+                            }
+                        }}
+                        onPause={() => {
+                            setIsPlaying(false);
+                            const isNative = typeof window.Capacitor !== 'undefined' && window.Capacitor.isNativePlatform();
+                            const MusicControls = window.Capacitor?.Plugins?.MusicControls;
+                            if (isNative && MusicControls) {
+                                MusicControls.updateIsPlaying({ isPlaying: false, elapsed: audioRef.current?.currentTime || 0 }).catch(()=>{});
+                            } else if ('mediaSession' in navigator) {
+                                navigator.mediaSession.playbackState = 'paused';
+                            }
+                        }}
+                    />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        if (newWorker) {
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    if (confirm('发现新版本，是否立即更新以加载最新内容？')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }).catch(err => console.log('Service Worker 注册失败: ', err));
+
+                let refreshing = false;
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (!refreshing) {
+                        refreshing = true;
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
