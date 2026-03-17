@@ -9,7 +9,7 @@
 
 **一个功能完整、性能卓越的现代音乐流媒体应用**，支持PWA安装、离线播放、动态歌词、深色模式、私人加密空间，并已封装为Android应用。
 
-🌐 **在线体验**: [https://moyer-music.vercel.app/](https://moyer-music.vercel.app/)  
+🌐 **在线体验**: [https://moyer-music.vercel.app/](https://moyer-music.vercel.app/)    （需科学上网）
 
 🔐 **测试密码**: 默认登录密码：123456；私人区域密码：000000（温馨提示，公开项目仅为第一首歌能播放）
 
